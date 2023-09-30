@@ -20,7 +20,7 @@ function Map() {
   }
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyDhpsujj1PJAP94ceIltKr2qLonruPjdEQ',
+    googleMapsApiKey: import.meta.env.VITE_KEY_GOOGLE_MAPS,
     libraries: ['places']
   })
 

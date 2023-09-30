@@ -40,14 +40,14 @@ export function MapProvider({ children }: MapProviderProps) {
   const getDataWather = useCallback(async (latLng: LatLngData) => {
     try {
       toggleLoading(true)
-      const res = await api.get('data/3.0/onecall', {
+      const res = await api.get('/data/3.0/onecall', {
         params: {
           lat: latLng.lat,
           lon: latLng.lng,
           exclude: ['minutely', 'hourly', 'daily'],
           units: 'metric',
           lang: 'pt_br',
-          appid: '3ebc45a6e57529f6f021bf701d2bf7d8'
+          appid: import.meta.env.VITE_KEY_WEATHER_MAP
         },
         paramsSerializer: params =>
           qs.stringify(params, { arrayFormat: 'comma' })
