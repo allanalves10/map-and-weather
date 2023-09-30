@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useState } from 'react'
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api'
 
 import { useGeolocation } from '../../hooks/useGeolocation'
@@ -11,7 +11,7 @@ import './styles.css'
 
 function Map() {
   const [openModal, setOpenModal] = useState(false)
-  const { currentSelection, favorites, getDataWather } = useMap()
+  const { currentSelection, favorites, getDataWather, onSelection } = useMap()
   const { position } = useGeolocation()
 
   const containerStyle = {
@@ -19,24 +19,18 @@ function Map() {
     height: '800px'
   }
 
-  useEffect(() => {
-    console.log('favorites')
-    console.log(favorites)
-  }, [favorites])
-
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyDhpsujj1PJAP94ceIltKr2qLonruPjdEQ',
     libraries: ['places']
   })
 
-  const handleOpenModal = (event: google.maps.MapMouseEvent, currentSelection: any) => {
-    console.log('currentSelection')
-    console.log(currentSelection)
-    console.log('event')
-    console.log(event)
+  const handleOpenModal = (
+    event: google.maps.MapMouseEvent,
+    currentSelection: any
+  ) => {
     const { latLng } = event
-    console.log(latLng)
     getDataWather({ lat: latLng?.lat(), lng: latLng?.lng() })
+    onSelection(currentSelection)
     setOpenModal(true)
   }
 
@@ -71,12 +65,15 @@ function Map() {
               {currentSelection !== null && (
                 <Marker
                   position={currentSelection}
-                  onClick={(event) => handleOpenModal(event, currentSelection)}
+                  onClick={event => handleOpenModal(event, currentSelection)}
                 />
               )}
 
               {favorites?.map(favorite => (
-                <Marker position={{ ...favorite }} onClick={(event) => handleOpenModal(event, favorite)} />
+                <Marker
+                  position={{ ...favorite }}
+                  onClick={event => handleOpenModal(event, favorite)}
+                />
               ))}
             </GoogleMap>
           </>

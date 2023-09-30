@@ -37,7 +37,6 @@ export const PlacesAutocomplete = () => {
       id="google-map-demo"
       sx={{
         width: 300,
-
         position: 'absolute',
         top: '12px',
         zIndex: 1,

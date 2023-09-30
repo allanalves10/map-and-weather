@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react'
-import { Box, Button } from '@mui/material'
+import { Box, BoxProps, Button } from '@mui/material'
 
-interface HeaderProps {
+interface HeaderProps extends BoxProps {
   children: ReactNode
   onClose: () => void
 }

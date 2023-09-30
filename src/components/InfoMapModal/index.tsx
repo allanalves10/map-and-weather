@@ -4,7 +4,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { useMap } from '../../hooks/useMap'
-
 import * as Modal from '../Modal'
 
 interface InfoMapModalProps {
@@ -17,14 +16,11 @@ function InfoMapModal(props: InfoMapModalProps) {
   const [isActiveFav, setIsActiveFav] = useState(false)
 
   const handleFavorites = useCallback(() => {
-    console.log('currentSelection')
-    console.log(currentSelection)
     onFav(currentSelection)
   }, [])
 
   useEffect(() => {
     console.log({ favorites, currentSelection, data })
-    // if ()
   }, [])
 
   return (
