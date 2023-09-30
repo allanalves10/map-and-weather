@@ -3,6 +3,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { useMap } from './hooks/useMap'
 
 import Map from './components/Map'
+import Logo from './assets/logo_branca.png'
 
 export function App() {
   const { favorites, onDeleteFav } = useMap()
@@ -13,7 +14,7 @@ export function App() {
 
   return (
     <>
-      <h1>BitXxxxx</h1>
+      <img style={{ padding: '0.5rem', background: 'gray', height: '1rem' }} src={Logo} alt="Logo branca Bitx" />
 
       {!!favorites.length && (
         <>
