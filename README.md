@@ -15,7 +15,7 @@ Para inicializar o projeto é necessário que o seu computador esteja com NodeJS
 1 - Instale as dependências necessárias com o comando
 
 ```
-npm install || yarn
+yarn
 ```
 
 2 - Crie um arquivo .env
@@ -25,7 +25,7 @@ copie os arquivos que estão contido dentro do arquivo '.env-example' que já es
 3 - Execute o projeto com o comando
 
 ```
-npm run dev || yarn dev
+yarn dev
 ```
 
 4 - Acesse o projeto
