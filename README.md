@@ -34,12 +34,6 @@ npm run dev || yarn dev
 http://localhost:3000
 ```
 
-5 - Executar os cases de teste
-
-```
-npm run test || yarn test
-```
-
-6 - Versão Node
+5 - Versão Node
 v18.15.0
 Obs.: versões a partir da 16 foram validadas.
