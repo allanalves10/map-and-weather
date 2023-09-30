@@ -20,6 +20,18 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/space-before-function-paren": "off",
-    "react/react-in-jsx-scope": "off"
+    "@typescript-eslint/naming-convention": "off",
+    "react/react-in-jsx-scope": "off",
+    "multiline-ternary": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { "checksVoidReturn": false }
+    ],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "require-await": ["error", {
+      "functions": {
+        "lazy": false // Desative a verificação para funções chamadas 'lazy'
+      }
+    }]
   }
 }
