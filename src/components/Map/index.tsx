@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api'
 
 import { useGeolocation } from '../../hooks/useGeolocation'
@@ -19,13 +19,23 @@ function Map() {
     height: '800px'
   }
 
+  useEffect(() => {
+    console.log('favorites')
+    console.log(favorites)
+  }, [favorites])
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyDhpsujj1PJAP94ceIltKr2qLonruPjdEQ',
     libraries: ['places']
   })
 
-  const handleOpenModal = (event: google.maps.MapMouseEvent) => {
+  const handleOpenModal = (event: google.maps.MapMouseEvent, currentSelection: any) => {
+    console.log('currentSelection')
+    console.log(currentSelection)
+    console.log('event')
+    console.log(event)
     const { latLng } = event
+    console.log(latLng)
     getDataWather({ lat: latLng?.lat(), lng: latLng?.lng() })
     setOpenModal(true)
   }
@@ -61,18 +71,12 @@ function Map() {
               {currentSelection !== null && (
                 <Marker
                   position={currentSelection}
-                  onClick={handleOpenModal}
-                  // options={{
-                  //   label: {
-                  //     className: 'custom-marker-label',
-                  //     text: 'Telecomunicação'
-                  //   }
-                  // }}
+                  onClick={(event) => handleOpenModal(event, currentSelection)}
                 />
               )}
 
               {favorites?.map(favorite => (
-                <Marker position={{ ...favorite }} onClick={handleOpenModal} />
+                <Marker position={{ ...favorite }} onClick={(event) => handleOpenModal(event, favorite)} />
               ))}
             </GoogleMap>
           </>

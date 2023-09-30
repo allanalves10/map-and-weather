@@ -17,6 +17,8 @@ function InfoMapModal(props: InfoMapModalProps) {
   const [isActiveFav, setIsActiveFav] = useState(false)
 
   const handleFavorites = useCallback(() => {
+    console.log('currentSelection')
+    console.log(currentSelection)
     onFav(currentSelection)
   }, [])
 

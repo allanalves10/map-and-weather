@@ -8,7 +8,6 @@ export const useGeolocation = () => {
   const [position, setPosition] = useState<any>(null)
 
   useEffect(() => {
-    console.log('executou')
     // Verifique se o navegador suporta geolocalização
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
