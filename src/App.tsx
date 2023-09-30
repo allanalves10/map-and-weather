@@ -15,19 +15,15 @@ export function App() {
   return (
     <>
       <img style={{ padding: '0.5rem', background: 'gray', height: '1rem' }} src={Logo} alt="Logo branca Bitx" />
-
-      {!!favorites.length && (
-        <>
-          <Typography>Meus Favoritos</Typography>
-          {favorites?.map(item => (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography>{item?.address}</Typography>
-              <Button onClick={handleDeleteFav(item)}>remover</Button>
-            </Box>
-          ))}
-        </>
-      )}
-
+      <div style={{ marginBottom: '2rem' }}>
+        <Typography>Meus Favoritos</Typography>
+        {!!favorites.length && favorites?.map(item => (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography>{item?.address}</Typography>
+            <Button onClick={handleDeleteFav(item)}>remover</Button>
+          </Box>
+        ))}
+      </div>
       <Map />
     </>
   )

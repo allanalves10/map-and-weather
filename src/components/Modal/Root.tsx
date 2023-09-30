@@ -9,8 +9,6 @@ export function Root(props: any) {
     width: 400,
     bgcolor: 'background.paper',
     boxShadow: 24
-    // p: 4,
-    // borderRadius: 2
   }
 
   return (

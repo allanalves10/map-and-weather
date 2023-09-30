@@ -43,15 +43,6 @@ function Map() {
       {openModal && (
         <InfoMapModal open={openModal} onClose={handleCloseModal} />
       )}
-      <h2
-        style={{
-          fontWeight: 'bold',
-          fontSize: '1.75rem',
-          marginBottom: '1rem'
-        }}
-      >
-        Mapa de Serviços
-      </h2>
       <div style={{ position: 'relative', maxWidth: '1124px' }}>
         {isLoaded ? (
           <>
