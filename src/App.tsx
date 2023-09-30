@@ -26,7 +26,7 @@ export function App() {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
+                gap: '2rem',
                 marginTop: '1rem',
               }}
             >
