@@ -39,7 +39,7 @@ function Map() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '2rem 0' }}>
       {openModal && (
         <InfoMapModal open={openModal} onClose={handleCloseModal} />
       )}
