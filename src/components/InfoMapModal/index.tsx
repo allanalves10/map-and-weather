@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect, useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { useMap } from '../../hooks/useMap'
@@ -13,15 +14,16 @@ interface InfoMapModalProps {
 
 function InfoMapModal(props: InfoMapModalProps) {
   const { data, favorites, currentSelection, onFav, onDeleteFav } = useMap()
-  const [isActiveFav, setIsActiveFav] = useState(false)
+  const [isActiveFav, setIsActiveFav] = useState(() =>
+    favorites.includes(currentSelection) ? true : false
+  )
 
-  const handleFavorites = useCallback(() => {
-    onFav(currentSelection)
-  }, [])
-
-  useEffect(() => {
-    console.log({ favorites, currentSelection, data })
-  }, [])
+  const handleFavorites = () => {
+    setIsActiveFav(prevState => !prevState)
+    favorites.includes(currentSelection)
+      ? onDeleteFav(currentSelection)
+      : onFav(currentSelection)
+  }
 
   return (
     <Modal.Root {...props}>
@@ -49,7 +51,11 @@ function InfoMapModal(props: InfoMapModalProps) {
             </Typography>
           </Box>
           <Button onClick={handleFavorites}>
-            <FavoriteIcon sx={{ color: '#ec4741' }} />
+            {isActiveFav ? (
+              <FavoriteIcon sx={{ color: '#ec4741' }} />
+            ) : (
+              <FavoriteBorderIcon sx={{ color: '#ec4741' }} />
+            )}
           </Button>
         </Box>
       </Modal.Header>
