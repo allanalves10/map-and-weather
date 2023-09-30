@@ -4,11 +4,12 @@ import { useMap } from './hooks/useMap'
 
 import Map from './components/Map'
 import Logo from './assets/logo_branca.png'
+import { LocationTypes } from './types/LocationTypes'
 
 export function App() {
   const { favorites, onDeleteFav } = useMap()
 
-  const handleDeleteFav = (a: any) => {
+  const handleDeleteFav = (a: LocationTypes) => {
     onDeleteFav(a)
   }
 

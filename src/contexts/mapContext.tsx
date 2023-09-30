@@ -2,6 +2,7 @@ import { createContext, useCallback, useState } from 'react'
 import qs from 'qs'
 import { api } from '../services/api'
 import { useLocalStorage } from '../hooks/useLocalStorage'
+import { LocationTypes } from '../types/LocationTypes'
 
 interface MapProviderProps {
   children: React.ReactNode
@@ -16,7 +17,7 @@ type MapData = {
   data: any
   favorites: any[]
   getDataWather: (latLng: LatLngData) => Promise<void>
-  onFav: (fav: any) => void
+  onFav: (fav: LocationTypes) => void
   currentSelection: any
   onSelection: (fav: any) => void
   onDeleteFav: any
@@ -31,7 +32,7 @@ export function MapProvider({ children }: MapProviderProps) {
   const [favorites, setFavorites] = useState<any[]>(() => {
     return favoritesStorage ? favoritesStorage : []
   })
-  const [currentSelection, setCurrentSelection] = useState(null)
+  const [currentSelection, setCurrentSelection] = useState<LocationTypes>()
 
   const getDataWather = useCallback(async (latLng: LatLngData) => {
     try {
@@ -54,7 +55,7 @@ export function MapProvider({ children }: MapProviderProps) {
     }
   }, [])
 
-  const addFavorites = useCallback((fav: any) => {
+  const addFavorites = useCallback((fav: LocationTypes) => {
     setFavorites(prevState => {
       const favState = [...prevState, fav]
       setFavoritesStorage(favState)
@@ -62,7 +63,7 @@ export function MapProvider({ children }: MapProviderProps) {
     })
   }, [])
 
-  const deleteFavorites = useCallback((fav: any) => {
+  const deleteFavorites = useCallback((fav: LocationTypes) => {
     setFavorites(prevState => {
       const arrFiltered = prevState.filter(i => i.address !== fav.address)
       setFavoritesStorage(arrFiltered)
@@ -70,7 +71,7 @@ export function MapProvider({ children }: MapProviderProps) {
     })
   }, [])
 
-  const updateCurrentSelection = useCallback((value: any) => {
+  const updateCurrentSelection = useCallback((value: LocationTypes) => {
     setCurrentSelection(value)
   }, [])
 
