@@ -2,6 +2,8 @@ import { createContext, useCallback, useState } from 'react'
 import qs from 'qs'
 import { api } from '../services/api'
 import { useLocalStorage } from '../hooks/useLocalStorage'
+import { useLoader } from '../hooks/useLoader'
+
 import { LocationTypes } from '../types/LocationTypes'
 
 interface MapProviderProps {
@@ -33,9 +35,11 @@ export function MapProvider({ children }: MapProviderProps) {
     return favoritesStorage ? favoritesStorage : []
   })
   const [currentSelection, setCurrentSelection] = useState<LocationTypes>()
+  const { toggleLoading } = useLoader()
 
   const getDataWather = useCallback(async (latLng: LatLngData) => {
     try {
+      toggleLoading(true)
       const res = await api.get('data/3.0/onecall', {
         params: {
           lat: latLng.lat,
@@ -51,7 +55,9 @@ export function MapProvider({ children }: MapProviderProps) {
 
       setData(res.data.current)
     } catch (err) {
+      console.error(err)
     } finally {
+      toggleLoading(false)
     }
   }, [])
 
