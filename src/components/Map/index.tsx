@@ -43,7 +43,7 @@ function Map() {
       {openModal && (
         <InfoMapModal open={openModal} onClose={handleCloseModal} />
       )}
-      <div style={{ position: 'relative', maxWidth: '1124px' }}>
+      <div style={{ position: 'relative', maxWidth: '100%' }}>
         {isLoaded ? (
           <>
             <PlacesAutocomplete />
